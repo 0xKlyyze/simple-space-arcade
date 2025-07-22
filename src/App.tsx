@@ -1,10 +1,11 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { GameCanvas } from './components/GameCanvas'
 import { NetworkLobby } from './components/NetworkLobby'
 import { GameUI } from './components/GameUI'
 import { useNetwork } from './hooks/useNetwork'
 import { ConnectionStatus } from './network/NetworkTypes'
 import { ErrorHandler, ErrorType, handleNetworkError, handleWebRTCError } from './utils/ErrorHandler'
+import { createInitialGameState } from './game/GameState'
 import styles from './App.module.css'
 
 type AppState = 'menu' | 'lobby' | 'connecting' | 'game' | 'error'
@@ -23,8 +24,14 @@ function App() {
     enableAutoRecovery: true
   })
   
+  // Create initial game state
+  const gameState = useMemo(() => {
+    return createInitialGameState(`game-${Date.now()}`, 800, 600);
+  }, []);
+
   // Initialize network hook
   const network = useNetwork({
+    gameState,
     autoReconnect: true,
     enablePrediction: true,
     enableInterpolation: true,
