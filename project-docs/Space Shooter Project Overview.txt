@@ -1,0 +1,50 @@
+<ProjectOverview>
+    <ProjectName>Simple Space Arcade</ProjectName>
+    
+    <CoreConcept>
+        <Description>Minimal local multiplayer space shooter for 2 PCs connected via peer-to-peer WiFi. Classic arcade-style gameplay with the simplest possible implementation.</Description>
+        <GameGenre>Arcade Space Shooter</GameGenre>
+        <PlayerCount>2 (Local Network)</PlayerCount>
+    </CoreConcept>
+
+    <TargetUser>
+        <Primary>Developer and friend for casual gaming sessions</Primary>
+        <UseCase>Quick 10-15 minute fun sessions between two computers</UseCase>
+    </TargetUser>
+
+    <TechnicalRequirements>
+        <NetworkType>Peer-to-peer WiFi (local network)</NetworkType>
+        <Complexity>Minimal - buildable in single development session</Complexity>
+        <Platform>Desktop (2 PCs)</Platform>
+    </TechnicalRequirements>
+
+    <KeyFeatures>
+        <MustHave>
+            <Feature>Two spaceships that can move and rotate</Feature>
+            <Feature>Basic shooting mechanics (projectiles)</Feature>
+            <Feature>Collision detection (ship-to-projectile)</Feature>
+            <Feature>Simple peer-to-peer connection (one host, one join)</Feature>
+            <Feature>Basic scoring/health system</Feature>
+            <Feature>Respawn when destroyed</Feature>
+        </MustHave>
+        
+        <NiceToHave>
+            <Feature>Simple asteroid obstacles</Feature>
+            <Feature>Power-ups</Feature>
+            <Feature>Multiple rounds/matches</Feature>
+        </NiceToHave>
+    </KeyFeatures>
+
+    <GameplayVision>
+        <Style>Classic arcade - top-down view, simple controls</Style>
+        <Controls>WASD for movement, spacebar/mouse for shooting</Controls>
+        <WinCondition>First to X kills or last ship standing</WinCondition>
+        <Duration>Quick matches (2-5 minutes each)</Duration>
+    </GameplayVision>
+
+    <Constraints>
+        <Development>Must be implementable in one coding session</Development>
+        <Scope>No complex graphics, animations, or sound required</Scope>
+        <Network>Basic UDP networking sufficient</Network>
+    </Constraints>
+</ProjectOverview>

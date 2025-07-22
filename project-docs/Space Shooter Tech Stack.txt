@@ -1,0 +1,224 @@
+# Complete Tech Stack Document: Simple Space Arcade
+**AI Agent Implementation Guide**
+
+## **TLDR**
+React + TypeScript stack with Canvas rendering, PeerJS networking, and Vite tooling. Structured for single-session AI development with clear separation of concerns and incremental building phases.
+
+## Core Technology Stack
+
+### **Primary Technologies**
+- **Framework**: React 18.2+ with TypeScript 5.0+
+- **Build Tool**: Vite 4.0+ (fastest development experience)
+- **Rendering**: HTML5 Canvas (direct pixel manipulation)
+- **Networking**: PeerJS 1.4+ (WebRTC abstraction)
+- **Styling**: CSS Modules (scoped styling)
+- **Package Manager**: npm (ecosystem compatibility)
+
+### **Key Dependencies**
+```json
+{
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "typescript": "^5.0.0",
+  "peerjs": "^1.4.7",
+  "vite": "^4.4.0",
+  "@types/react": "^18.2.0",
+  "@types/react-dom": "^18.2.0"
+}
+```
+
+## Project Architecture
+
+### **Directory Structure**
+```
+simple-space-arcade/
+├── public/
+│   ├── index.html
+│   └── assets/
+│       ├── ship1.png (32x32)
+│       ├── ship2.png (32x32)
+│       └── projectile.png (8x8)
+├── src/
+│   ├── components/
+│   │   ├── GameCanvas.tsx
+│   │   ├── NetworkLobby.tsx
+│   │   ├── GameUI.tsx
+│   │   └── GameControls.tsx
+│   ├── game/
+│   │   ├── GameLoop.ts
+│   │   ├── GameState.ts
+│   │   ├── entities/
+│   │   │   ├── Ship.ts
+│   │   │   ├── Projectile.ts
+│   │   │   └── CollisionDetector.ts
+│   │   └── physics/
+│   │       ├── Vector2D.ts
+│   │       └── Movement.ts
+│   ├── network/
+│   │   ├── PeerConnection.ts
+│   │   ├── GameSync.ts
+│   │   └── NetworkTypes.ts
+│   ├── hooks/
+│   │   ├── useGameLoop.ts
+│   │   ├── useNetwork.ts
+│   │   └── useKeyboard.ts
+│   ├── utils/
+│   │   ├── Constants.ts
+│   │   └── MathUtils.ts
+│   ├── App.tsx
+│   ├── App.module.css
+│   └── main.tsx
+├── package.json
+├── vite.config.ts
+└── tsconfig.json
+```
+
+## Implementation Strategy
+
+### **Phase 1: Core Setup (30 minutes)**
+1. **Vite + React + TypeScript Initialization**
+   ```bash
+   npm create vite@latest simple-space-arcade -- --template react-ts
+   cd simple-space-arcade
+   npm install peerjs
+   ```
+
+2. **Configuration Files**
+   - `vite.config.ts`: Configure for local development
+   - `tsconfig.json`: Strict TypeScript settings
+   - Basic CSS reset and Canvas styling
+
+### **Phase 2: Game Foundation (45 minutes)**
+1. **GameCanvas Component**
+   - Canvas element with React ref
+   - Resize handling and coordinate system
+   - Basic render loop with requestAnimationFrame
+
+2. **Core Game Entities**
+   - `Vector2D` class for position/velocity
+   - `Ship` class with movement, rotation, shooting
+   - `Projectile` class with trajectory physics
+   - `GameState` interface for complete game state
+
+3. **Input Handling**
+   - `useKeyboard` hook for WASD + Spacebar
+   - Event listeners with React lifecycle management
+   - Input state buffering for smooth movement
+
+### **Phase 3: Single-Player Mechanics (60 minutes)**
+1. **Game Loop Implementation**
+   - Fixed timestep physics updates
+   - Collision detection between ships/projectiles
+   - Health system and respawn logic
+   - Score tracking and win conditions
+
+2. **Rendering System**
+   - Canvas 2D context management
+   - Sprite loading and caching
+   - Optimized drawing with dirty rectangles
+   - Simple UI overlay for health/scores
+
+### **Phase 4: Networking Layer (45 minutes)**
+1. **PeerJS Integration**
+   - Host/Join lobby system
+   - WebRTC connection establishment
+   - Data channel for game state sync
+   - Connection status handling
+
+2. **Game Synchronization**
+   - State reconciliation between peers
+   - Input prediction and lag compensation
+   - Deterministic physics simulation
+   - Network message queuing
+
+## Detailed Technical Specifications
+
+### **Canvas Rendering Approach**
+```typescript
+interface RenderContext {
+  canvas: HTMLCanvasElement;
+  context: CanvasRenderingContext2D;
+  width: number;
+  height: number;
+}
+
+const renderFrame = (gameState: GameState, renderContext: RenderContext) => {
+  // Clear canvas
+  // Render background
+  // Render ships with rotation
+  // Render projectiles
+  // Render UI overlay
+};
+```
+
+### **Network Message Protocol**
+```typescript
+interface NetworkMessage {
+  type: 'gameState' | 'input' | 'playerAction';
+  timestamp: number;
+  playerId: string;
+  data: GameState | PlayerInput | PlayerAction;
+}
+```
+
+### **State Management Pattern**
+- **Local State**: React useState for UI components
+- **Game State**: Immutable updates with custom reducer
+- **Network State**: Synchronized via PeerJS data channels
+- **Input State**: Buffered in custom hook with cleanup
+
+### **Performance Optimizations**
+- **Canvas**: Single canvas element, avoid React re-renders
+- **Game Loop**: Separate from React render cycle
+- **Network**: Throttled updates (30fps max) with delta compression
+- **Memory**: Object pooling for projectiles, cleanup on unmount
+
+## AI Agent Development Guidelines
+
+### **Code Generation Priorities**
+1. **Type Safety First**: All interfaces defined before implementation
+2. **Modular Components**: Single responsibility per file/class
+3. **Error Boundaries**: Network disconnection handling
+4. **Performance Awareness**: Avoid React anti-patterns in game loop
+
+### **Testing Strategy**
+- **Unit Tests**: Game logic functions (collision, physics)
+- **Integration Tests**: Network message handling
+- **Manual Testing**: Two-browser local testing protocol
+- **Performance Tests**: Frame rate monitoring
+
+### **Debugging Setup**
+- **React DevTools**: Component state inspection
+- **Browser DevTools**: Canvas rendering debugging
+- **Network Tab**: WebRTC connection monitoring
+- **Console Logging**: Game state transitions
+
+## Deployment Configuration
+
+### **Development Environment**
+- **Hot Reload**: Vite dev server on localhost:5173
+- **Local Network**: Access via IP for peer testing
+- **HTTPS**: Required for WebRTC (use Vite's --https flag)
+
+### **Production Build**
+- **Static Hosting**: Vite build output to dist/
+- **Asset Optimization**: Automatic image compression
+- **Bundle Analysis**: Source map generation for debugging
+
+## **Unconventional Perspective: Game Development as UI/UX Problem**
+
+Most developers approach games as pure logic systems, but your React + TypeScript choice actually frames this as a **user interface problem**. This mindset shift is powerful for AI development:
+
+- **State Management**: Treat game state like form data with validation
+- **Event Handling**: Network messages become user interactions
+- **Performance**: Frame drops are UX failures, not technical limitations
+- **Error Handling**: Network issues are accessibility concerns
+
+This perspective leverages React's strengths while avoiding common game development pitfalls like tight coupling and global state management.
+
+## Next Steps for AI Agent
+
+1. **Generate Project Scaffold**: Create directory structure and config files
+2. **Implement Core Loop**: Start with single-player mechanics
+3. **Add Network Layer**: Integrate PeerJS step-by-step
+4. **Polish and Test**: Refinement and cross-browser testing

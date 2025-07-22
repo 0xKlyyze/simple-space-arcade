@@ -1,0 +1,566 @@
+/* GameControls Component Styles */
+
+.gameControls {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Help Button */
+.helpButton {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 123, 255, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.helpButton:hover {
+  background: rgba(0, 123, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.helpButton:active {
+  transform: scale(0.95);
+}
+
+.helpIcon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.helpText {
+  display: none;
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  animation: fadeIn 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.overlay.animating {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal */
+.modal {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideIn 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* Content */
+.content {
+  padding: 32px;
+  overflow-y: auto;
+  max-height: calc(90vh - 100px);
+}
+
+/* Controls Grid */
+.controlsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.controlCategory {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.categoryTitle {
+  margin: 0 0 16px 0;
+  color: #64b5f6;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.controlsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.controlItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.keyContainer {
+  flex-shrink: 0;
+}
+
+.key {
+  background: linear-gradient(135deg, #424242 0%, #303030 100%);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #555;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  min-width: 40px;
+  text-align: center;
+  display: inline-block;
+}
+
+.controlInfo {
+  flex: 1;
+}
+
+.action {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.description {
+  color: #b0b0b0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Tips Section */
+.tipsSection {
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  margin-bottom: 24px;
+}
+
+.tipsTitle {
+  margin: 0 0 16px 0;
+  color: #81c784;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tipsTitle::before {
+  content: '💡';
+  font-size: 20px;
+}
+
+.tipsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tip {
+  color: #e8f5e8;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.tip::before {
+  content: '▸';
+  color: #81c784;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.tip:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.shortcut {
+  color: #b0b0b0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.shortcut kbd {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gameMode {
+  color: #64b5f6;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Compact Controls */
+.compactControls {
+  position: relative;
+}
+
+.compactControls .helpButton {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  top: 15px;
+  right: 15px;
+}
+
+.compactOverlay {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: rgba(26, 26, 46, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  z-index: 1003;
+  animation: slideDown 0.2s ease;
+  min-width: 200px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.compactContent h4 {
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.quickControls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quickControls span {
+  color: #e0e0e0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quickControls kbd {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  min-width: 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Simple Controls */
+.simpleControls {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 12px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.simpleGrid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.simpleItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 60px;
+}
+
+.simpleItem kbd {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 32px;
+  text-align: center;
+}
+
+.simpleItem span {
+  color: #b0b0b0;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal {
+    margin: 10px;
+    max-height: calc(100vh - 20px);
+  }
+  
+  .header {
+    padding: 20px 24px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .content {
+    padding: 24px;
+  }
+  
+  .controlsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .helpButton .helpText {
+    display: none;
+  }
+  
+  .compactOverlay {
+    right: -10px;
+    left: auto;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 10px;
+  }
+  
+  .modal {
+    border-radius: 12px;
+  }
+  
+  .header {
+    padding: 16px 20px;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .controlCategory {
+    padding: 16px;
+  }
+  
+  .tipsSection {
+    padding: 20px;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .modal {
+    background: #000000;
+    border: 2px solid #ffffff;
+  }
+  
+  .key {
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+  }
+  
+  .controlCategory {
+    border: 1px solid #ffffff;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal,
+  .compactOverlay,
+  .helpButton {
+    animation: none;
+    transition: none;
+  }
+  
+  .helpButton:hover {
+    transform: none;
+  }
+}
+
+/* Focus Styles */
+.helpButton:focus,
+.closeButton:focus {
+  outline: 2px solid #64b5f6;
+  outline-offset: 2px;
+}
+
+.overlay:focus {
+  outline: none;
+}
+
+/* Dark Theme Adjustments */
+@media (prefers-color-scheme: dark) {
+  .modal {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  }
+  
+  .controlCategory {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  .tipsSection {
+    background: rgba(76, 175, 80, 0.08);
+  }
+}
+
+/* Scrollbar Styling */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
